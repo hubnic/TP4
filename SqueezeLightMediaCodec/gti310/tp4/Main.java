@@ -41,17 +41,22 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Squeeze Light Media Codec !");
-		/*int [][][] newImage;
+		int [][][] image;
+		PPMReaderWriter reader = new PPMReaderWriter();
+		image = reader.readPPMFile("C:\\Users\\Jean-Theo\\workspace\\TP4\\media-TP4\\lena.ppm");
+		RGBtoYCbCrConverter converter = new RGBtoYCbCrConverter();
+		double [][][] YCbCrImage = converter.convert(image);
+		
+		
 		int offset = 0;
-		newImage = PPMReaderWriter.readPPMFile("C:\\Users\\Nicolas\\Documents\\Universite\\2015\\Hiver\\GTI310\\TP4\\TP4\\media-TP4\\lena.ppm");
-		for(int i = 0; i < newImage.length; i++) {
-			for(int j = 0; j < newImage.length ; j++) {
-				System.out.println(newImage[Main.R][i][j]);
-				System.out.println(newImage[Main.G][i][j]);
-				System.out.println(newImage[Main.B][i][j]);
+		for(int i = 0; i < YCbCrImage[0].length; i++) {
+			for(int j = 0; j < YCbCrImage[0][0].length ; j++) {
+				System.out.println(YCbCrImage[Main.R][i][j]);
+				System.out.println(YCbCrImage[Main.G][i][j]);
+				System.out.println(YCbCrImage[Main.B][i][j]);
 				offset += 3;
 			}
 			System.out.println("\n");
-		}*/
+		}
 	}
 }
