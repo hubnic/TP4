@@ -24,7 +24,8 @@ public class RGBtoYCbCrConverter {
 		catch( Exception e ){
 				 System.out.println("La valeur n'est pas entre 0 et 255");
 				 return false;
-		}	
+		}
+		return false;	
 		
 	}
 }
