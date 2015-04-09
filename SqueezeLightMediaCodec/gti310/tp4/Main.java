@@ -44,7 +44,7 @@ public class Main {
 		int [][][] image;
 		PPMReaderWriter reader = new PPMReaderWriter();
 		image = reader.readPPMFile("C:\\Users\\Jean-Theo\\workspace\\TP4\\media-TP4\\lena.ppm");
-		RGBtoYCbCrConverter converter = new RGBtoYCbCrConverter();
+		Converters converter = new Converters();
 		double [][][] YCbCrImage = converter.convert(image);
 		
 		DCT dct = new DCT(0);
