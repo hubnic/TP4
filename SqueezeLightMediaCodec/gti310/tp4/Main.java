@@ -47,8 +47,10 @@ public class Main {
 		RGBtoYCbCrConverter converter = new RGBtoYCbCrConverter();
 		double [][][] YCbCrImage = converter.convert(image);
 		
+		DCT dct = new DCT(0);
 		
-		int offset = 0;
+		
+		/*int offset = 0;
 		for(int i = 0; i < YCbCrImage[0].length; i++) {
 			for(int j = 0; j < YCbCrImage[0][0].length ; j++) {
 				System.out.println(YCbCrImage[Main.R][i][j]);
@@ -57,6 +59,6 @@ public class Main {
 				offset += 3;
 			}
 			System.out.println("\n");
-		}
+		}*/
 	}
 }
