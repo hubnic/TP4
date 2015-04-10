@@ -46,6 +46,9 @@ public class Main {
 		image = reader.readPPMFile("C:\\Users\\Jean-Theo\\workspace\\TP4\\media-TP4\\lena.ppm");
 		Converters converter = new Converters();
 		double [][][] YCbCrImage = converter.convert(image);
+		double [][] YEspace = converter.getEspace(YCbCrImage, 0);
+		double [][] CbEspace = converter.getEspace(YCbCrImage, 1);
+		double [][] CrEspace = converter.getEspace(YCbCrImage, 2);
 		
 		DCT dct = new DCT(0);
 		

@@ -70,4 +70,16 @@ public class Converters {
 		else
 			return value;
 	}
+	public double[][] getEspace(double[][][] image, int espace){
+		double[][] newEspace = new double[image[0].length][image[0][0].length];
+		for(int i = 0; i < image[0].length; i++) {
+			for(int j = 0; j < image[0][0].length ; j++)
+				newEspace[i][j] = image[espace][i][j];
+			}	
+		return newEspace;
+	}	
+		
+		
 }
+	
+

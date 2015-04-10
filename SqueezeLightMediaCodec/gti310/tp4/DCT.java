@@ -56,9 +56,17 @@ public class DCT
     public int N = 8;
 
     /**
-     * Image Quality (0-25) - default 25 (worst image / best compression)
+     * Qualité de 0 à 100
      */
     public int QUALITY = 25;
+    
+    
+    /**
+     * Y,Cb et Cr separees en 3 matrices
+     */
+    public int[][] yMatrix;
+    public int[][] cbMatrix;
+    public int[][] crMatrix;
 
     /**
      * Image width - must correspond to imageArray bounds - default 320
@@ -107,6 +115,7 @@ public class DCT
      */
     public DCT(int QUALITY)
     {
+    	
         initZigZag();
         initMatrix(QUALITY);
     }
@@ -125,17 +134,17 @@ public class DCT
         int i;
         int j;
 
-        for (i = 0; i < N; i++)
+        for (i = 0; i < 8; i++)
         {
-            for (j = 0; j < N; j++)
+            for (j = 0; j < 8; j++)
             {
                 quantum[i][j] = (1 + ((1 + i + j) * quality));
             }
         }
 
-        for (j = 0; j < N; j++)
+        for (j = 0; j < 8; j++)
         {
-            double nn = (double)(N);
+            double nn = (double)(8);
             c[0][j]  = 1.0 / Math.sqrt(nn);
             cT[j][0] = c[0][j];
         }
@@ -541,5 +550,19 @@ public class DCT
         bitSet[1] = (byte)(LSB-128);
 
         return bitSet;
+    }
+    
+    public int[][] decoupage(int[][] entree ){ //CHUI RENDU A PUR LE DECOUPAGE
+    	int hauteurTable = entree.length/8;
+    	int largeurTable = entree[0].length/8;
+    	int[][] chunkTable = new int[hauteurTable][largeurTable];
+    	
+    	for(int i=0; i<hauteurTable;i++){
+    		for(int j=0; j<largeurTable;j++){
+    			chunkTable[i][j] = 
+    		}
+    	}
+    		
+    return chunkTable;
     }
 }
