@@ -41,17 +41,34 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Squeeze Light Media Codec !");
-		int [][][] image;
+		int [][][] imageIn;
 		PPMReaderWriter reader = new PPMReaderWriter();
-		image = reader.readPPMFile("C:\\Users\\Jean-Theo\\workspace\\TP4\\media-TP4\\lena.ppm");
+		//image = reader.readPPMFile("C:\\Users\\Jean-Theo\\workspace\\TP4\\media-TP4\\lena.ppm");
+		imageIn = reader.readPPMFile(args[1]);
 		Converters converter = new Converters();
-		double [][][] YCbCrImage = converter.convert(image);
-		double [][] YEspace = converter.getEspace(YCbCrImage, 0);
-		double [][] CbEspace = converter.getEspace(YCbCrImage, 1);
-		double [][] CrEspace = converter.getEspace(YCbCrImage, 2);
+		newDCT dct = new newDCT();
+		Quantification quantification = new Quantification();
 		
-		DCT dct = new DCT(0);
+		//la qualite est passee en parametre
+		int qualite = Integer.parseInt(args[0]);
 		
+		//on converti l<image de RGB a YCbCr
+		double[][][] YCbCrImage = converter.convertRGBToYCbCr(imageIn);
+		
+		//on separe les espace Y, Cb, Cr, choix personnel pour la manipulation du fichier
+		double[][] YEspace = converter.getEspace(YCbCrImage, 0);
+		double[][] CbEspace = converter.getEspace(YCbCrImage, 1);
+		double[][] CrEspace = converter.getEspace(YCbCrImage, 2);
+		
+		//on effectue le dct sur les 3 espaces
+		double[][] YEspaceDCT = dct.appliquerDCT(YEspace);
+		double[][] CbEspaceDCT = dct.appliquerDCT(CbEspace);
+		double[][] CrEspaceDCT = dct.appliquerDCT(CrEspace);
+		
+		//on effectue la quantification sur les 3 espaces
+		double[][] YEspaceQt = quantification.appliquerQuantificationY(YEspaceDCT, qualite);
+		double[][] CbEspaceQt = quantification.appliquerQuantificationCbCr(CbEspaceDCT, qualite);
+		double[][] CrEspaceQt = quantification.appliquerQuantificationCbCr(CrEspaceDCT, qualite);
 		
 		/*int offset = 0;
 		for(int i = 0; i < YCbCrImage[0].length; i++) {
